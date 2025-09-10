@@ -17,6 +17,7 @@ app.get("/health", (_req, res) => {
 app.use("/entries", entriesRouter);
 
 const port = process.env.PORT ? Number(process.env.PORT) : 4000;
+
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);
 });

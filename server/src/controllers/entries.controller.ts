@@ -9,9 +9,7 @@ const createEntrySchema = z.object({
   notes: z.string().optional().nullable(),
 });
 
-/**
- * HTTP handlers for entries resources.
- */
+
 export class EntriesController {
   /** GET /entries */
   static async list(_req: Request, res: Response) {

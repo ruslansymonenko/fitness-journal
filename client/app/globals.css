@@ -5,6 +5,13 @@
 :root {
   --background: #0b0f19;
   --foreground: #f8fafc;
+  --muted: #0f1525;
+  --panel: rgba(255,255,255,0.05);
+  --panel-border: rgba(255,255,255,0.10);
+  --brand-accent: #f97316; /* Tailwind orange-500 vibe */
+  --brand-accent-600: #ea580c;
+  --brand-blue: #3b82f6;
+  --brand-purple: #7c3aed;
 }
 
 html, body {
@@ -19,6 +26,25 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border px-4 py-4 sm:px-5 sm:py-5;
+    background: var(--panel);
+    border-color: var(--panel-border);
+  }
+  .card-title {
+    @apply text-sm text-white/70;
+  }
+  .metric {
+    @apply mt-2 text-3xl font-semibold;
+  }
+  .btn-accent {
+    @apply rounded px-3 py-2 text-black transition;
+    background: var(--brand-accent);
+  }
+  .btn-accent:hover { filter: brightness(0.95); }
 }
 
 

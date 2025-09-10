@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createEntry } from "../../lib/api";
 
 export default function AddEntryPage() {
   const [date, setDate] = useState<string>(new Date().toISOString().slice(0, 10));
@@ -10,9 +11,26 @@ export default function AddEntryPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // TODO: post to server API
-    console.log({ date, workoutType, duration: Number(duration), notes });
-    alert("Entry submitted (mock)");
+    
+    try {
+      await createEntry({
+        date,
+        workoutType,
+        duration: Number(duration),
+        notes: notes || undefined,
+      });
+      
+      // Reset form after successful submission
+      setDate(new Date().toISOString().slice(0, 10));
+      setWorkoutType("");
+      setDuration("");
+      setNotes("");
+      
+      alert("Entry saved successfully!");
+    } catch (error) {
+      console.error("Failed to create entry:", error);
+      alert("Failed to save entry. Please try again.");
+    }
   }
 
   return (

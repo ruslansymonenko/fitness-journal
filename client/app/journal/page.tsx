@@ -1,18 +1,4 @@
-type Entry = {
-  id: string;
-  date: string;
-  workoutType: string;
-  duration: number;
-  notes?: string | null;
-};
-
-async function fetchEntries(): Promise<Entry[]> {
-  // TODO: connect to real API endpoint
-  return [
-    { id: "1", date: "2025-01-01", workoutType: "Run", duration: 45, notes: "Morning jog" },
-    { id: "2", date: "2025-01-03", workoutType: "Strength", duration: 60, notes: "Upper body" },
-  ];
-}
+import { fetchEntries, type Entry } from "../../lib/api";
 
 export default async function JournalPage() {
   const entries = await fetchEntries();
