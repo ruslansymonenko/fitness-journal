@@ -1,0 +1,86 @@
+## Node & Package Managers
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+## Environment files
+.env
+.env.*
+!.env.example
+
+## Logs & PIDs
+logs/
+*.log
+*.pid
+
+## OS / Editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+## Coverage & Test
+coverage/
+.nyc_output/
+
+## Build artifacts (TS/JS)
+dist/
+build/
+out/
+.cache/
+.tmp/
+temp/
+*.tsbuildinfo
+
+## Next.js (client)
+.next/
+.next-static/
+.turbo/
+.vercel/
+
+## Prisma / SQLite (server)
+prisma/*.db
+prisma/*.db-journal
+server/prisma/*.db
+server/prisma/*.db-journal
+*.sqlite
+*.sqlite-journal
+
+## Archives
+*.tgz
+
+## App uploads/media (if any)
+uploads/
+public/uploads/
+
+## Monorepo paths (explicit client/server ignores)
+# Client (Next.js)
+/client/node_modules/
+/client/.next/
+/client/.turbo/
+/client/.vercel/
+/client/out/
+/client/.cache/
+/client/.tmp/
+/client/coverage/
+/client/.nyc_output/
+/client/.env
+/client/.env.*
+
+# Server (Node/Prisma)
+/server/node_modules/
+/server/dist/
+/server/build/
+/server/.cache/
+/server/.tmp/
+/server/coverage/
+/server/.nyc_output/
+/server/.env
+/server/.env.*
+/server/prisma/*.db
+/server/prisma/*.db-journal
+
