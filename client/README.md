@@ -38,3 +38,27 @@ The client now connects to the real server API:
 - **GET /entries/:id**: Fetches a specific entry by ID
 
 All API calls are handled through the `lib/api.ts` utility functions.
+
+## Global State (Zustand)
+
+We use Zustand for lightweight global UI state. Base store is in `lib/store.ts`.
+
+Example usage:
+
+```tsx
+import { useAppStore } from '@/lib/store';
+
+export default function Example() {
+  const { isLoading, errorMessage, setLoading, setError, reset } = useAppStore();
+
+  return (
+    <div>
+      {isLoading && <p>Loading…</p>}
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      <button onClick={() => setLoading(true)}>Start</button>
+      <button onClick={() => setError('Something went wrong')}>Error</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+```

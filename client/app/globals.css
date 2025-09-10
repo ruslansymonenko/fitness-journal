@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Root variables for dark theme by default */
 :root {
   --background: #0b0f19;
   --foreground: #f8fafc;
@@ -45,6 +46,19 @@ a {
     background: var(--brand-accent);
   }
   .btn-accent:hover { filter: brightness(0.95); }
+}
+
+/* Light theme variables */
+:root[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #0b0f19;
+  --muted: #f3f4f6;
+  --panel: rgba(0,0,0,0.04);
+  --panel-border: rgba(0,0,0,0.08);
+  --brand-accent: #f97316;
+  --brand-accent-600: #ea580c;
+  --brand-blue: #2563eb;
+  --brand-purple: #6d28d9;
 }
 
 

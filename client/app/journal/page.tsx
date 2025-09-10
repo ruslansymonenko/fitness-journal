@@ -1,10 +1,11 @@
 import { fetchEntries, type Entry } from "../../lib/api";
+import JournalHeader from "../../components/JournalHeader";
 
 export default async function JournalPage() {
   const entries = await fetchEntries();
   return (
     <section>
-      <h2 className="mb-6 text-2xl font-medium">Journal</h2>
+      <JournalHeader />
       <ul className="space-y-3">
         {entries.map((e) => (
           <li key={e.id} className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 p-4">

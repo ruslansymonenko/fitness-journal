@@ -15,9 +15,7 @@ export type CreateEntryData = {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
-/**
- * Fetch all journal entries from the server.
- */
+
 export async function fetchEntries(): Promise<Entry[]> {
   const response = await fetch(`${API_BASE_URL}/entries`);
   
@@ -28,9 +26,7 @@ export async function fetchEntries(): Promise<Entry[]> {
   return response.json();
 }
 
-/**
- * Create a new journal entry on the server and return it.
- */
+
 export async function createEntry(data: CreateEntryData): Promise<Entry> {
   const response = await fetch(`${API_BASE_URL}/entries`, {
     method: 'POST',
@@ -48,9 +44,7 @@ export async function createEntry(data: CreateEntryData): Promise<Entry> {
   return response.json();
 }
 
-/**
- * Fetch a single journal entry by its id.
- */
+
 export async function fetchEntryById(id: string): Promise<Entry> {
   const response = await fetch(`${API_BASE_URL}/entries/${id}`);
   
@@ -61,9 +55,7 @@ export async function fetchEntryById(id: string): Promise<Entry> {
   return response.json();
 }
 
-/**
- * Calculate client-side statistics for a list of entries.
- */
+
 export function calculateStats(entries: Entry[]) {
   const now = new Date();
   const startOfWeek = new Date(now);
