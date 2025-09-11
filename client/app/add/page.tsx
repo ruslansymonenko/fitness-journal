@@ -40,43 +40,43 @@ export default function AddEntryPage() {
       <h2 className="mb-6 text-2xl font-medium">{t("addEntry")}</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="mb-1 block text-sm text-white/70">{t("date")}</label>
+          <label className="mb-1 block text-sm opacity-70">{t("date")}</label>
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 outline-none focus:border-brand.accent"
+            className="w-full rounded-md border border-[color:var(--panel-border)] bg-[var(--panel)] px-3 py-2 outline-none focus:border-brand.accent"
             required
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm text-white/70">{t("workoutType")}</label>
+          <label className="mb-1 block text-sm opacity-70">{t("workoutType")}</label>
           <input
             type="text"
             value={workoutType}
             onChange={(e) => setWorkoutType(e.target.value)}
             placeholder="Run, Strength, Yoga..."
-            className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 outline-none focus:border-brand.accent"
+            className="w-full rounded-md border border-[color:var(--panel-border)] bg-[var(--panel)] px-3 py-2 outline-none focus:border-brand.accent"
             required
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm text-white/70">{t("durationMinutes")}</label>
+          <label className="mb-1 block text-sm opacity-70">{t("durationMinutes")}</label>
           <input
             type="number"
             min={1}
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
-            className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 outline-none focus:border-brand.accent"
+            className="w-full rounded-md border border-[color:var(--panel-border)] bg-[var(--panel)] px-3 py-2 outline-none focus:border-brand.accent"
             required
           />
         </div>
         <div>
-          <label className="mb-1 block text-sm text-white/70">{t("notes")}</label>
+          <label className="mb-1 block text-sm opacity-70">{t("notes")}</label>
           <textarea
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
-            className="w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 outline-none focus:border-brand.accent"
+            className="w-full rounded-md border border-[color:var(--panel-border)] bg-[var(--panel)] px-3 py-2 outline-none focus:border-brand.accent"
             rows={4}
             placeholder={t("optional")}
           />

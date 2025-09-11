@@ -7,7 +7,7 @@ import Shell from "../components/Shell";
 
 export const metadata: Metadata = {
   title: "Fitness Journal",
-  description: "Minimal fitness journal",
+  description: "Your fitness journal",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
