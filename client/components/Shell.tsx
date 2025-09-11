@@ -10,6 +10,22 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning>
       <body className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased">
+        <script
+          // This runs before React hydrates; it sets the theme to avoid FOUC
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+  try {
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = stored ? stored : (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
+  } catch (e) {
+    // If anything fails, default to light to avoid dark flash
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();`
+          }}
+        />
         <div className="mx-auto max-w-7xl px-4 py-6">
           <div className="grid grid-cols-12 gap-6">
             <Sidebar />
