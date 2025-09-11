@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 
-// Create a singleton Prisma client instance
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 export const prisma: PrismaClient =

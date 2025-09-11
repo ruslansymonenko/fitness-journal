@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { createEntry } from "../../lib/api";
-import { useI18n } from "../../lib/i18n";
+import { createEntry } from "@/services/entries";
+import { useI18n } from "@/lib/i18n";
+import { useAppStore } from "@/store/store";
+import { withAuth } from "@/lib/withAuth";
 
-export default function AddEntryPage() {
+function AddEntryPage() {
   const { t } = useI18n();
+  const { setError } = useAppStore();
   const [date, setDate] = useState<string>(new Date().toISOString().slice(0, 10));
   const [workoutType, setWorkoutType] = useState<string>("");
   const [duration, setDuration] = useState<string>("");
@@ -20,18 +23,18 @@ export default function AddEntryPage() {
         workoutType,
         duration: Number(duration),
         notes: notes || undefined,
+        userId: "" // userId will be set server-side based on the auth token
       });
       
-      // Reset form after successful submission
       setDate(new Date().toISOString().slice(0, 10));
       setWorkoutType("");
       setDuration("");
       setNotes("");
       
-      alert(t("entrySaved"));
+      
     } catch (error) {
-      console.error("Failed to create entry:", error);
-      alert(t("entryFailed"));
+      const message = error instanceof Error ? error.message : t("entryFailed");
+      setError(message);
     }
   }
 
@@ -87,4 +90,5 @@ export default function AddEntryPage() {
   );
 }
 
+export default withAuth(AddEntryPage);
 

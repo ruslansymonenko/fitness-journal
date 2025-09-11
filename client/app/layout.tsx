@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import ThemeToggle from "../components/ThemeToggle";
-import LanguageSwitcher from "../components/LanguageSwitcher";
-import { I18nProvider } from "../lib/i18n";
-import Shell from "../components/Shell";
+import ThemeToggle from "@/components/ThemeToggle";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { I18nProvider } from "@/lib/i18n";
+import Shell from "@/components/Shell";
 
 export const metadata: Metadata = {
   title: "Fitness Journal",

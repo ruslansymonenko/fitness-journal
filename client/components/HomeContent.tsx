@@ -1,6 +1,6 @@
 "use client";
 
-import { useI18n } from "../lib/i18n";
+import { useI18n } from "@/lib/i18n";
 
 type Stats = {
   thisWeekSessions: number;
@@ -15,9 +15,7 @@ function formatDuration(minutes: number): string {
   return `${hours}h ${mins}m`;
 }
 
-/**
- * Client-rendered home content to allow language switching without full reload.
- */
+
 export default function HomeContent({ stats }: { stats: Stats }) {
   const { t } = useI18n();
   return (

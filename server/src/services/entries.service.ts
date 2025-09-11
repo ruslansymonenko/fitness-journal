@@ -1,25 +1,42 @@
-import { prisma } from "../db";
+import { prisma } from "@/db";
 
 export type CreateEntryInput = {
   date: Date;
   workoutType: string;
   duration: number;
   notes?: string | null;
+  userId: string;
 };
 
 
 export class EntryService {
-  static async listAll() {
-    return prisma.entry.findMany({ orderBy: { date: "desc" } });
+  static async listAll(userId: string) {
+    return prisma.entry.findMany({
+      where: { userId },
+      orderBy: { date: "desc" }
+    });
   }
 
-  static async getById(id: string) {
-    return prisma.entry.findUnique({ where: { id } });
+  static async getById(id: string, userId: string) {
+    return prisma.entry.findFirst({
+      where: {
+        id,
+        userId
+      }
+    });
   }
 
   static async create(data: CreateEntryInput) {
-    const { date, workoutType, duration, notes } = data;
-    return prisma.entry.create({ data: { date, workoutType, duration, notes: notes ?? null } });
+    const { date, workoutType, duration, notes, userId } = data;
+    return prisma.entry.create({
+      data: {
+        date,
+        workoutType,
+        duration,
+        notes: notes ?? null,
+        userId
+      }
+    });
   }
 }
 

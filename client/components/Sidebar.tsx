@@ -1,6 +1,6 @@
-import LanguageSwitcher from "./LanguageSwitcher";
-import ThemeToggle from "./ThemeToggle";
-import { useI18n } from "../lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import ThemeToggle from "@/components/ThemeToggle";
+import { useI18n } from "@/lib/i18n";
 
 export default function Sidebar() {
     const { t } = useI18n();

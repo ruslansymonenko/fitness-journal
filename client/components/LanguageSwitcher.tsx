@@ -1,10 +1,8 @@
 "use client";
 
-import { useI18n, type SupportedLanguage } from "../lib/i18n";
+import { useI18n, type SupportedLanguage } from "@/lib/i18n";
 
-/**
- * Dropdown to switch application language between supported locales.
- */
+
 export default function LanguageSwitcher() {
   const { language, setLanguage } = useI18n();
 

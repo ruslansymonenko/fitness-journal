@@ -10,19 +10,24 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Read persisted theme or prefer system dark
     const stored = typeof window !== "undefined" ? (localStorage.getItem("theme") as Theme | null) : null;
     const preferredDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     const nextTheme: Theme = stored ?? (preferredDark ? "dark" : "light");
+
     setTheme(nextTheme);
+
     document.documentElement.setAttribute("data-theme", nextTheme === "light" ? "light" : "dark");
+
     setMounted(true);
   }, []);
 
   const handleToggle = () => {
     const next: Theme = theme === "light" ? "dark" : "light";
+
     setTheme(next);
+
     document.documentElement.setAttribute("data-theme", next === "light" ? "light" : "dark");
+    
     localStorage.setItem("theme", next);
   };
 
