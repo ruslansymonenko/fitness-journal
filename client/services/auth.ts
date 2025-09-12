@@ -24,7 +24,7 @@ const authService = {
     });
 
     const result = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(result.message || 'Registration failed');
     }
@@ -42,12 +42,20 @@ const authService = {
     });
 
     const result = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(result.message || 'Login failed');
     }
 
     return result;
+  },
+
+  async logout() {
+    localStorage.removeItem('auth');
+
+    document.cookie = 'auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    window.location.href = '/';
   },
 };
 
@@ -58,7 +66,7 @@ export const fetcher = async (url: string, token?: string | null) => {
   const response = await fetch(`${API_URL}${url}`, {
     headers: {
       'Content-Type': 'application/json',
-      ...(authToken && { 'Authorization': `Bearer ${authToken}` }),
+      ...(authToken && { Authorization: `Bearer ${authToken}` }),
     },
   });
 

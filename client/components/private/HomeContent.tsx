@@ -1,6 +1,7 @@
 'use client';
 
 import { useI18n } from '@/lib/i18n';
+import { authService } from '@/services/auth';
 
 type Stats = {
   thisWeekSessions: number;
@@ -44,6 +45,15 @@ export default function HomeContent({ stats }: { stats: Stats }) {
             {stats.streakDays} {t('days')}
           </div>
         </div>
+      </div>
+
+      <div className="flex justify-end mt-6">
+        <button
+          onClick={() => authService.logout()}
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors"
+        >
+          {t('logout')}
+        </button>
       </div>
     </section>
   );

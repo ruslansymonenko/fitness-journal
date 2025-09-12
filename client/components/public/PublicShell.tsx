@@ -1,15 +1,16 @@
 'use client';
 
 import { useI18n } from '@/lib/i18n';
-import Sidebar from '@/components/private/Sidebar';
 import { useAppStore } from '@/store/store';
+import Header from '@/components/landing/Header';
+import FooterSection from '@/components/landing/FooterSection';
 
 export default function PublicShell({ children }: { children: React.ReactNode }) {
   const { t } = useI18n();
   const { errorMessage, setError } = useAppStore();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6">
+    <>
       {errorMessage ? (
         <div className="mb-4 rounded-md border border-red-800/40 bg-red-900/30 p-3 text-red-200">
           <div className="flex items-start justify-between gap-4">
@@ -24,17 +25,11 @@ export default function PublicShell({ children }: { children: React.ReactNode })
           </div>
         </div>
       ) : null}
-      <div className="grid grid-cols-12 gap-6">
-        <section className="col-span-12 sm:col-span-9 lg:col-span-10">
-          <header className="mb-6 flex items-center justify-between">
-            <div className="text-sm text-white/70">{t('welcomeBack')}</div>
-          </header>
-          <main>{children}</main>
-          <footer className="mt-12 border-t border-white/10 pt-6 text-xs text-white/60">
-            <p>© {new Date().getFullYear()} Fitness Journal</p>
-          </footer>
-        </section>
-      </div>
-    </div>
+      <Header />
+      <section className="min-h-screen pt-1">
+        <main>{children}</main>
+        <FooterSection />
+      </section>
+    </>
   );
 }

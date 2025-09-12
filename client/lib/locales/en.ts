@@ -1,4 +1,5 @@
 const en = {
+  logout: 'Logout',
   fitness: 'Fitness',
   overview: 'Overview',
   journal: 'Journal',

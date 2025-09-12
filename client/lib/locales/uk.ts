@@ -1,4 +1,5 @@
 const uk = {
+  logout: 'Вийти',
   fitness: 'Фітнес',
   overview: 'Огляд',
   journal: 'Журнал',
