@@ -1,11 +1,11 @@
 'use client';
 
-import { fetchEntries } from "@/services/entries";
-import { calculateStats } from "@/services/statistic";
-import HomeContent from "@/components/HomeContent";
-import { withAuth } from "@/lib/withAuth";
-import { useEffect, useState } from "react";
-import { Stats } from "@/services/statistic";
+import { fetchEntries } from '@/services/entries';
+import { calculateStats } from '@/services/statistic';
+import HomeContent from '@/components/private/HomeContent';
+import { withAuth } from '@/lib/withAuth';
+import { useEffect, useState } from 'react';
+import { Stats } from '@/services/statistic';
 
 function HomePage() {
   const [stats, setStats] = useState<Stats | null>(null);
@@ -34,5 +34,3 @@ function HomePage() {
 }
 
 export default withAuth(HomePage);
-
-

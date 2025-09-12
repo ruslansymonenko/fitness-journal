@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useI18n } from "@/lib/i18n";
+import { useI18n } from '@/lib/i18n';
 
 type Stats = {
   thisWeekSessions: number;
@@ -15,7 +15,6 @@ function formatDuration(minutes: number): string {
   return `${hours}h ${mins}m`;
 }
 
-
 export default function HomeContent({ stats }: { stats: Stats }) {
   const { t } = useI18n();
   return (
@@ -23,27 +22,29 @@ export default function HomeContent({ stats }: { stats: Stats }) {
       <div className="card relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/60 via-orange-500/30 to-transparent" />
         <div className="relative z-[1]">
-          <h2 className="text-2xl font-semibold">{t("heroTitle")}</h2>
-          <p className="mt-1 text-sm text-white/70">{t("heroSubtitle")}</p>
+          <h2 className="text-2xl font-semibold">{t('heroTitle')}</h2>
+          <p className="mt-1 text-sm text-white/70">{t('heroSubtitle')}</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <div className="card">
-          <div className="card-title">{t("thisWeek")}</div>
-          <div className="metric">{stats.thisWeekSessions} {t("sessions")}</div>
+          <div className="card-title">{t('thisWeek')}</div>
+          <div className="metric">
+            {stats.thisWeekSessions} {t('sessions')}
+          </div>
         </div>
         <div className="card">
-          <div className="card-title">{t("totalDuration")}</div>
+          <div className="card-title">{t('totalDuration')}</div>
           <div className="metric">{formatDuration(stats.totalDurationMinutes)}</div>
         </div>
         <div className="card">
-          <div className="card-title">{t("streak")}</div>
-          <div className="metric">{stats.streakDays} {t("days")}</div>
+          <div className="card-title">{t('streak')}</div>
+          <div className="metric">
+            {stats.streakDays} {t('days')}
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-

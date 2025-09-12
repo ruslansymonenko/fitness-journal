@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../globals.css';
 import { I18nProvider } from '@/lib/i18n';
-import CommonShell from '@/components/common/CommonShell';
+import PrivateShell from '@/components/private/PrivateShell';
 
 export const metadata: Metadata = {
   title: 'Fitness Journal',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <I18nProvider>
-      <CommonShell>{children}</CommonShell>
+      <PrivateShell>{children}</PrivateShell>
     </I18nProvider>
   );
 }
