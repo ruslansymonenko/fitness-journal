@@ -2,6 +2,7 @@
 
 import { useI18n } from '@/lib/i18n';
 import { authService } from '@/services/auth';
+import Button from '@/components/common/Button';
 
 type Stats = {
   thisWeekSessions: number;
@@ -24,7 +25,7 @@ export default function HomeContent({ stats }: { stats: Stats }) {
         <div className="absolute inset-0 bg-gradient-to-r from-orange-500/60 via-orange-500/30 to-transparent" />
         <div className="relative z-[1]">
           <h2 className="text-2xl font-semibold">{t('heroTitle')}</h2>
-          <p className="mt-1 text-sm text-white/70">{t('heroSubtitle')}</p>
+          <p className="mt-1 text-sm">{t('heroSubtitle')}</p>
         </div>
       </div>
 
@@ -48,12 +49,9 @@ export default function HomeContent({ stats }: { stats: Stats }) {
       </div>
 
       <div className="flex justify-end mt-6">
-        <button
-          onClick={() => authService.logout()}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors"
-        >
+        <Button variant="danger" onClick={() => authService.logout()}>
           {t('logout')}
-        </button>
+        </Button>
       </div>
     </section>
   );

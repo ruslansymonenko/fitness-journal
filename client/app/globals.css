@@ -60,7 +60,7 @@ a {
     border-color: var(--panel-border);
   }
   .card-title {
-    @apply text-sm text-white/70;
+    @apply text-sm;
   }
   .metric {
     @apply mt-2 text-3xl font-semibold;
