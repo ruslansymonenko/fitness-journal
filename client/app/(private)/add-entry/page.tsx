@@ -5,6 +5,7 @@ import { createEntry } from '@/services/entries';
 import { useI18n } from '@/lib/i18n';
 import { useAppStore } from '@/store/store';
 import { withAuth } from '@/lib/withAuth';
+import { useAuthStore } from '@/store/authStore';
 
 function AddEntryPage() {
   const { t } = useI18n();
@@ -13,9 +14,15 @@ function AddEntryPage() {
   const [workoutType, setWorkoutType] = useState<string>('');
   const [duration, setDuration] = useState<string>('');
   const [notes, setNotes] = useState<string>('');
+  const userId = useAuthStore.getState().user?.id;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    if (!userId) {
+      setError('User not authenticated');
+      return;
+    }
 
     try {
       await createEntry({
@@ -23,7 +30,7 @@ function AddEntryPage() {
         workoutType,
         duration: Number(duration),
         notes: notes || undefined,
-        userId: '', // userId will be set server-side based on the auth token
+        userId: userId,
       });
 
       setDate(new Date().toISOString().slice(0, 10));
