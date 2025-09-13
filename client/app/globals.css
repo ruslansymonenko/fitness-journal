@@ -2,20 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Root variables for dark theme by default */
+/* Root variables for dark theme*/
 :root {
   --background: #0b0f19;
   --foreground: #f8fafc;
-  --muted: #0f1525;
-  --panel: rgba(255,255,255,0.05);
-  --panel-border: rgba(255,255,255,0.10);
-  --brand-accent: #f97316; /* Tailwind orange-500 vibe */
+  --muted: #e3e4e6;
+  /* --muted: #0f1525; */
+  --panel: rgba(255, 255, 255, 0.05);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --brand-accent: #f97316;
   --brand-accent-600: #ea580c;
+  --brand-secondary: #00bfbf;
+  --brand-secondary-600: #00898a;
   --brand-blue: #3b82f6;
   --brand-purple: #7c3aed;
+  --component-bg: rgba(255, 255, 255, 0.05);
+  --component-foreground: rgba(0, 0, 0, 0.04);
 }
 
-html, body {
+/* Light theme variables */
+:root[data-theme='light'] {
+  --background: #ffffff;
+  --foreground: #0b0f19;
+  --muted: #161c2b;
+  /* --muted: #f3f4f6; */
+  --panel: rgba(0, 0, 0, 0.04);
+  --panel-border: rgba(0, 0, 0, 0.08);
+  --brand-accent: #f97316;
+  --brand-accent-600: #ea580c;
+  --brand-secondary: #00bfbf;
+  --brand-secondary-600: #00898a;
+  --brand-blue: #2563eb;
+  --brand-purple: #6d28d9;
+  --component-bg: rgba(0, 0, 0, 0.04);
+  --component-foreground: rgba(255, 255, 255, 0.05);
+}
+
+html,
+body {
   height: 100%;
 }
 
@@ -45,20 +69,7 @@ a {
     @apply rounded px-3 py-2 text-black transition;
     background: var(--brand-accent);
   }
-  .btn-accent:hover { filter: brightness(0.95); }
+  .btn-accent:hover {
+    filter: brightness(0.95);
+  }
 }
-
-/* Light theme variables */
-:root[data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #0b0f19;
-  --muted: #f3f4f6;
-  --panel: rgba(0,0,0,0.04);
-  --panel-border: rgba(0,0,0,0.08);
-  --brand-accent: #f97316;
-  --brand-accent-600: #ea580c;
-  --brand-blue: #2563eb;
-  --brand-purple: #6d28d9;
-}
-
-

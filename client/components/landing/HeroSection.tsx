@@ -6,7 +6,7 @@ const HeroSection = () => {
   const { t } = useI18n();
 
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-800">
+    <section className="relative h-screen flex items-center justify-center bg-gradient-to-r from-orange-500/60 via-orange-500/30 to-transparent">
       <div className="absolute inset-0 bg-black/40"></div>
       <div className="relative z-10 text-center text-white px-4">
         <h1 className="text-5xl md:text-6xl font-bold mb-6">Fitness Journal</h1>

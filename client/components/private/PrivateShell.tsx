@@ -27,13 +27,13 @@ export default function PrivateShell({ children }: { children: React.ReactNode }
         <Sidebar />
         <section className="col-span-12 sm:col-span-9 lg:col-span-10">
           <header className="mb-6 flex items-center justify-between">
-            <div className="text-sm text-white/70">{t('welcomeBack')}</div>
+            <div className="text-sm">{t('welcomeBack')}</div>
             <a className="btn-accent" href="/add-entry">
               {t('addEntry')}
             </a>
           </header>
           <main>{children}</main>
-          <footer className="mt-12 border-t border-white/10 pt-6 text-xs text-white/60">
+          <footer className="mt-12 border-t border-white/10 pt-6 text-xs">
             <p>© {new Date().getFullYear()} Fitness Journal</p>
           </footer>
         </section>

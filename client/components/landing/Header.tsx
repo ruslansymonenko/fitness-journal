@@ -11,16 +11,16 @@ const Header = () => {
   const { t } = useI18n();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)] text-[var(--foreground)] backdrop-blur-sm">
       <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white">
+        <Link href="/" className="text-2xl font-bold">
           Fitness Journal
         </Link>
 
         {/* Mobile menu button */}
         <button
           type="button"
-          className="md:hidden p-2 rounded-md text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+          className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -45,15 +45,12 @@ const Header = () => {
 
         {/* Desktop navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          <Link
-            href="/about"
-            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition duration-200"
-          >
+          <Link href="/about" className="hover:text-[var(--brand-accent)] transition duration-200">
             {t('Landing.navigation.about')}
           </Link>
           <Link
             href="/contact"
-            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition duration-200"
+            className="transition duration-200 hover:text-[var(--brand-accent)]"
           >
             {t('Landing.navigation.contact')}
           </Link>
@@ -61,13 +58,13 @@ const Header = () => {
           <ThemeToggle />
           <Link
             href="/auth/login"
-            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition duration-200"
+            className="transition duration-200 hover:text-[var(--brand-accent)]"
           >
             {t('Landing.navigation.login')}
           </Link>
           <Link
             href="/auth/register"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full font-medium transition duration-200"
+            className="bg-[var(--brand-accent)] hover:bg-[var(--brand-accent-600)] text-white px-4 py-2 rounded-full font-medium transition duration-200"
           >
             {t('Landing.navigation.register')}
           </Link>
@@ -80,16 +77,10 @@ const Header = () => {
           }`}
         >
           <div className="px-4 py-2 space-y-2">
-            <Link
-              href="/about"
-              className="block py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-            >
+            <Link href="/about" className="block py-2 hover:text-[var(--brand-accent)]">
               {t('Landing.navigation.about')}
             </Link>
-            <Link
-              href="/contact"
-              className="block py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-            >
+            <Link href="/contact" className="block py-2 hover:text-[var(--brand-accent)]">
               {t('Landing.navigation.contact')}
             </Link>
             <div className="py-2">
@@ -98,10 +89,7 @@ const Header = () => {
             <div className="py-2">
               <ThemeToggle />
             </div>
-            <Link
-              href="/auth/login"
-              className="block py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-            >
+            <Link href="/auth/login" className="block py-2 hover:text-[var(--brand-accent)]">
               {t('Landing.navigation.login')}
             </Link>
             <Link
