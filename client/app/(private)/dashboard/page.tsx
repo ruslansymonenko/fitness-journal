@@ -1,36 +1,25 @@
 'use client';
 
-import { fetchEntries } from '@/services/entries';
-import { calculateStats } from '@/services/statistic';
 import HomeContent from '@/components/private/HomeContent';
 import { withAuth } from '@/lib/withAuth';
-import { useEffect, useState } from 'react';
-import { Stats } from '@/services/statistic';
+import { useStats } from '@/hooks/useEntries';
 
 function HomePage() {
-  const [stats, setStats] = useState<Stats | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, isError, error, refetch } = useStats();
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-        const entries = await fetchEntries();
-        setStats(calculateStats(entries));
-      } catch (error) {
-        console.error('Error loading entries:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
+  if (isError) {
+    return (
+      <div className="rounded-md border border-yellow-800/40 bg-yellow-900/30 p-4 text-yellow-100">
+        {error instanceof Error ? error.message : 'Failed to load stats'}
+      </div>
+    );
+  }
 
-    loadData();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  return stats ? <HomeContent stats={stats} /> : null;
+  return data ? <HomeContent stats={data} /> : null;
 }
 
 export default withAuth(HomePage);
