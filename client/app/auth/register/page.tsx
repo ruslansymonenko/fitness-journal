@@ -11,9 +11,7 @@ import Link from 'next/link';
 const registerSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Required'),
+  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
 });
 
 export default function RegisterPage() {
@@ -40,12 +38,10 @@ export default function RegisterPage() {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--component-bg)] text-[var(--foreground)] py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your account
-          </h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold">Create your account</h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={formik.handleSubmit}>
           {error && (
@@ -116,13 +112,16 @@ export default function RegisterPage() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[var(--brand-secondary)] hover:bg-[var(--brand-secondary-600)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--brand-secondary)]"
             >
               Sign up
             </button>
           </div>
           <div className="text-sm text-center">
-            <Link href="/auth/login" className="font-medium text-blue-600 hover:text-blue-500">
+            <Link
+              href="/auth/login"
+              className="font-medium text-[var(--brand-accent)] hover:text-[var(--brand-accent-600)]"
+            >
               Already have an account? Sign in
             </Link>
           </div>
