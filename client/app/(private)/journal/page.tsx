@@ -1,32 +1,14 @@
 'use client';
 
-import { fetchEntries, type Entry } from '@/services/entries';
 import JournalHeader from '@/components/JournalHeader';
 import { withAuth } from '@/lib/withAuth';
-
-import { useEffect, useState } from 'react';
 import EntriesList from '@/components/private/EntriesList';
+import { useEntries } from '@/hooks/useEntries';
 
 function JournalPage() {
-  const [entries, setEntries] = useState<Entry[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, isLoading, isError, error, refetch } = useEntries();
 
-  useEffect(() => {
-    async function loadEntries() {
-      try {
-        const data = await fetchEntries();
-        setEntries(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load entries');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadEntries();
-  }, []);
-  if (loading) {
+  if (isLoading) {
     return (
       <section>
         <JournalHeader />
@@ -35,12 +17,12 @@ function JournalPage() {
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <section>
         <JournalHeader />
         <div className="rounded-md border border-yellow-800/40 bg-yellow-900/30 p-4 text-yellow-100">
-          {error}
+          {error instanceof Error ? error.message : 'Failed to load entries'}
         </div>
       </section>
     );
@@ -49,7 +31,7 @@ function JournalPage() {
   return (
     <section>
       <JournalHeader />
-      <EntriesList entries={entries} />
+      <EntriesList entries={data ?? []} />
     </section>
   );
 }
