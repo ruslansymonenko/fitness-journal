@@ -1,5 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createEntry, CreateEntryData, Entry } from '@/services/entries';
+import {
+  createEntry,
+  updateEntry,
+  deleteEntry,
+  CreateEntryData,
+  UpdateEntryData,
+  Entry,
+} from '@/services/entries';
 import { queryKeys } from '@/lib/queryClient';
 
 export function useCreateEntry() {
@@ -9,16 +16,11 @@ export function useCreateEntry() {
     mutationFn: (data: CreateEntryData) => createEntry(data),
     onSuccess: (newEntry: Entry) => {
       queryClient.invalidateQueries({
-        queryKey: queryKeys.entries.lists(),
+        queryKey: queryKeys.entries.all,
       });
 
       queryClient.invalidateQueries({
         queryKey: queryKeys.stats.all,
-      });
-
-      queryClient.setQueryData<Entry[]>(queryKeys.entries.lists(), (oldEntries) => {
-        if (!oldEntries) return [newEntry];
-        return [...oldEntries, newEntry];
       });
     },
     onError: (error) => {
@@ -31,12 +33,12 @@ export function useUpdateEntry() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<CreateEntryData> }) => {
-      throw new Error('Update functionality not implemented yet');
+    mutationFn: async ({ id, data }: { id: string; data: UpdateEntryData }) => {
+      return updateEntry(id, data);
     },
     onSuccess: (updatedEntry: Entry, { id }) => {
       queryClient.invalidateQueries({
-        queryKey: queryKeys.entries.lists(),
+        queryKey: queryKeys.entries.all,
       });
 
       queryClient.setQueryData(queryKeys.entries.detail(id), updatedEntry);
@@ -44,6 +46,9 @@ export function useUpdateEntry() {
       queryClient.invalidateQueries({
         queryKey: queryKeys.stats.all,
       });
+    },
+    onError: (error) => {
+      console.error('Failed to update entry:', error);
     },
   });
 }
@@ -53,12 +58,11 @@ export function useDeleteEntry() {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      throw new Error('Delete functionality not implemented yet');
+      return deleteEntry(id);
     },
     onSuccess: (_, deletedId) => {
-      queryClient.setQueryData<Entry[]>(queryKeys.entries.lists(), (oldEntries) => {
-        if (!oldEntries) return [];
-        return oldEntries.filter((entry) => entry.id !== deletedId);
+      queryClient.invalidateQueries({
+        queryKey: queryKeys.entries.all,
       });
 
       queryClient.removeQueries({
@@ -68,6 +72,9 @@ export function useDeleteEntry() {
       queryClient.invalidateQueries({
         queryKey: queryKeys.stats.all,
       });
+    },
+    onError: (error) => {
+      console.error('Failed to delete entry:', error);
     },
   });
 }
