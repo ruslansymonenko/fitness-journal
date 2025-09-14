@@ -1,0 +1,46 @@
+version: 2
+updates:
+  # Enable version updates for npm (server)
+  - package-ecosystem: "npm"
+    directory: "/server"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "server"
+      include: "scope"
+    reviewers:
+      - "ruslansymonenko"
+    labels:
+      - "dependencies"
+      - "server"
+
+  # Enable version updates for npm (client)
+  - package-ecosystem: "npm"
+    directory: "/client"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "client"
+      include: "scope"
+    reviewers:
+      - "ruslansymonenko"
+    labels:
+      - "dependencies"
+      - "client"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+    reviewers:
+      - "ruslansymonenko"
+    labels:
+      - "dependencies"
+      - "github-actions"

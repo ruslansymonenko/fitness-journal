@@ -1,0 +1,56 @@
+name: Dev Branch CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  test-and-build:
+    name: Quick Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Server tests
+      - name: Install server dependencies
+        working-directory: ./server
+        run: npm ci
+
+      - name: Setup test environment for server
+        working-directory: ./server
+        run: |
+          echo "JWT_SECRET=test-jwt-secret-for-dev-branch" > .env
+          echo "NODE_ENV=test" >> .env
+
+      - name: Generate Prisma client
+        working-directory: ./server
+        run: npx prisma generate
+
+      - name: Run server tests (without database)
+        working-directory: ./server
+        run: npm test
+
+      - name: Build server
+        working-directory: ./server
+        run: npm run build
+
+      # Client build
+      - name: Install client dependencies
+        working-directory: ./client
+        run: npm ci
+
+      - name: Build client
+        working-directory: ./client
+        run: npm run build
+
+      - name: Dev branch validation complete
+        run: echo "✅ Dev branch tests and builds completed successfully!"
