@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchEntries, fetchEntryById, Entry } from '@/services/entries';
+import { fetchEntries, fetchEntryById, Entry, FetchEntriesParams } from '@/services/entries';
 import { calculateStats, Stats } from '@/services/statistic';
 import { queryKeys } from '@/lib/queryClient';
 
-export function useEntries() {
+export function useEntries(params?: FetchEntriesParams) {
   return useQuery({
-    queryKey: queryKeys.entries.lists(),
-    queryFn: fetchEntries,
+    queryKey: queryKeys.entries.list(params),
+    queryFn: () => fetchEntries(params),
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 }
@@ -22,15 +22,15 @@ export function useEntry(id: string) {
 
 export function useStats() {
   const entriesQuery = useQuery({
-    queryKey: queryKeys.entries.lists(),
-    queryFn: fetchEntries,
+    queryKey: queryKeys.entries.list(),
+    queryFn: () => fetchEntries(),
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
   return useQuery({
     queryKey: queryKeys.stats.all,
     queryFn: (): Stats => {
-      if (!entriesQuery.data) {
+      if (!entriesQuery.data?.entries) {
         return {
           thisWeekSessions: 0,
           totalDurationMinutes: 0,
@@ -38,9 +38,9 @@ export function useStats() {
           streakDays: 0,
         };
       }
-      return calculateStats(entriesQuery.data);
+      return calculateStats(entriesQuery.data.entries);
     },
-    enabled: !!entriesQuery.data,
+    enabled: !!entriesQuery.data?.entries,
     staleTime: 1000 * 60 * 2, // 2 minutes
   });
 }
