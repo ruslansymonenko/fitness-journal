@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore, getStoredAuth } from '@/store/authStore';
 
-export function withAuth(Component: React.ComponentType) {
-  return function AuthenticatedComponent(props: any) {
+export function withAuth<T extends object = {}>(Component: React.ComponentType<T>) {
+  return function AuthenticatedComponent(props: T) {
     const router = useRouter();
     const user = useAuthStore((state) => state.user);
     const [rehydrated, setRehydrated] = useState(false);
@@ -24,12 +24,12 @@ export function withAuth(Component: React.ComponentType) {
     }, [rehydrated, user, router]);
 
     if (!rehydrated || !user) return null;
-    return <Component {...props} />;
+    return <Component {...(props as T & JSX.IntrinsicAttributes)} />;
   };
 }
 
-export function withoutAuth(Component: React.ComponentType) {
-  return function UnauthenticatedComponent(props: any) {
+export function withoutAuth<T extends object = {}>(Component: React.ComponentType<T>) {
+  return function UnauthenticatedComponent(props: T) {
     const router = useRouter();
     const user = useAuthStore((state) => state.user);
     const [rehydrated, setRehydrated] = useState(false);
@@ -48,6 +48,6 @@ export function withoutAuth(Component: React.ComponentType) {
     }, [rehydrated, user, router]);
 
     if (!rehydrated || user) return null;
-    return <Component {...props} />;
+    return <Component {...(props as T & JSX.IntrinsicAttributes)} />;
   };
 }

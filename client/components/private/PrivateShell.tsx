@@ -3,8 +3,9 @@
 import { useI18n } from '@/lib/i18n';
 import Sidebar from '@/components/private/Sidebar';
 import { useAppStore } from '@/store/store';
+import { withAuth } from '@/lib/withAuth';
 
-export default function PrivateShell({ children }: { children: React.ReactNode }) {
+function PrivateShell({ children }: { children: React.ReactNode }) {
   const { t } = useI18n();
   const { errorMessage, setError } = useAppStore();
 
@@ -41,3 +42,5 @@ export default function PrivateShell({ children }: { children: React.ReactNode }
     </main>
   );
 }
+
+export default withAuth(PrivateShell);
