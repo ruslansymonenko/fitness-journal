@@ -21,7 +21,8 @@ const variants: Record<NonNullable<ButtonProps['variant']>, string> = {
   secondary:
     'bg-[var(--brand-secondary)] text-[var(--foreground)] hover:brightness-95 focus:ring-secondary',
   danger: 'bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors',
-  ghost: 'bg-transparent text-[var(--foreground)] hover:bg-gray-100 focus:ring-gray-300',
+  ghost:
+    'bg-transparent text-[var(--foreground)] hover:bg-gray-100 focus:ring-gray-300 border hover:border-gray-400',
   link: 'bg-transparent text-[var(--foreground)] hover:underline focus:ring-primary px-0 py-0',
 };
 

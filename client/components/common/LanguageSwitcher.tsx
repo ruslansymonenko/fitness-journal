@@ -14,7 +14,7 @@ export default function LanguageSwitcher() {
       aria-label="Select language"
       value={language}
       onChange={handleChange}
-      className="rounded border border-white/10 bg-white/5 px-2 py-1 text-sm hover:bg-white/10"
+      className="rounded border border-white/10 px-2 py-1 text-sm bg-[var(--background)]"
     >
       <option value="en">EN</option>
       <option value="uk">UK</option>

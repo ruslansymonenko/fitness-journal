@@ -1,3 +1,5 @@
+import { log } from 'console';
+
 const en = {
   logout: 'Logout',
   fitness: 'Fitness',
@@ -20,6 +22,24 @@ const en = {
   save: 'Save',
   entrySaved: 'Entry saved successfully!',
   entryFailed: 'Failed to save entry. Please try again.',
+  registration: 'Create your account',
+  login: 'Sign in to your account',
+  email: 'Email',
+  password: 'Password',
+  name: 'Name',
+  confirmPassword: 'Confirm Password',
+  alreadyHaveAccount: 'Already have an account? Log in',
+  dontHaveAccount: "Don't have an account? Register",
+  invalidEmail: 'Invalid email address',
+  loginFailed: 'Login failed. Please check your credentials and try again.',
+  passwordMin: 'Password must be at least 6 characters',
+  passwordsMustMatch: 'Passwords must match',
+  registrationFailed: 'Registration failed. Please try again.',
+  registrationSuccess: 'Registration successful! You can now log in.',
+  enter: 'Enter',
+  signUp: 'Sign Up',
+  creatingAccount: 'Creating account...',
+  loggingIn: 'Logging in...',
   Landing: {
     navigation: {
       about: 'About',

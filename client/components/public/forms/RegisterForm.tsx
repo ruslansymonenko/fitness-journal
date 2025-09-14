@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useState } from 'react';
+import { useI18n } from '@/lib/i18n';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAuthStore } from '@/store/authStore';
@@ -21,6 +21,7 @@ const RegisterForm: React.FC<Props> = (props) => {
   const router = useRouter();
   const setAuth = useAuthStore((state) => state.setAuth);
   const registerMutation = useRegister();
+  const { t } = useI18n();
 
   const formik = useFormik({
     initialValues: {
@@ -45,7 +46,7 @@ const RegisterForm: React.FC<Props> = (props) => {
   return (
     <div className="max-w-md w-full space-y-8">
       <div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold">Create your account</h2>
+        <h2 className="mt-6 text-center text-3xl font-extrabold">{t('registration')}</h2>
       </div>
       <form className="mt-8 space-y-6" onSubmit={formik.handleSubmit}>
         {registerMutation.isError && (
@@ -58,7 +59,7 @@ const RegisterForm: React.FC<Props> = (props) => {
         <div className="rounded-md shadow-sm -space-y-px">
           <div>
             <label htmlFor="name" className="sr-only">
-              Name
+              {t('name')}
             </label>
             <input
               id="name"
@@ -67,7 +68,7 @@ const RegisterForm: React.FC<Props> = (props) => {
               required
               disabled={registerMutation.isPending}
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="Name"
+              placeholder={t('name')}
               value={formik.values.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -78,7 +79,7 @@ const RegisterForm: React.FC<Props> = (props) => {
           </div>
           <div>
             <label htmlFor="email" className="sr-only">
-              Email address
+              {t('email')}
             </label>
             <input
               id="email"
@@ -87,7 +88,7 @@ const RegisterForm: React.FC<Props> = (props) => {
               required
               disabled={registerMutation.isPending}
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="Email address"
+              placeholder={t('email')}
               value={formik.values.email}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -98,7 +99,7 @@ const RegisterForm: React.FC<Props> = (props) => {
           </div>
           <div>
             <label htmlFor="password" className="sr-only">
-              Password
+              {t('password')}
             </label>
             <input
               id="password"
@@ -107,7 +108,7 @@ const RegisterForm: React.FC<Props> = (props) => {
               required
               disabled={registerMutation.isPending}
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-              placeholder="Password"
+              placeholder={t('password')}
               value={formik.values.password}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -124,7 +125,7 @@ const RegisterForm: React.FC<Props> = (props) => {
             disabled={registerMutation.isPending}
             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[var(--brand-secondary)] hover:bg-[var(--brand-secondary-600)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--brand-secondary)] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {registerMutation.isPending ? 'Creating account...' : 'Sign up'}
+            {registerMutation.isPending ? <span>{t('creatingAccount')}</span> : t('signUp')}
           </button>
         </div>
         <div className="text-sm text-center">
@@ -132,7 +133,7 @@ const RegisterForm: React.FC<Props> = (props) => {
             href="/auth/login"
             className="font-medium text-[var(--brand-accent)] hover:text-[var(--brand-accent-600)]"
           >
-            Already have an account? Sign in
+            {t('alreadyHaveAccount')}
           </Link>
         </div>
       </form>
